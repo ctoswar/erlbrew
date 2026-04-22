@@ -1,0 +1,123 @@
+.menu-page { padding-top: 72px; }
+
+.menu-page-hero {
+  background: var(--brown);
+  padding: 80px 48px 64px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=60') center/cover;
+  opacity: 0.12;
+}
+
+.menu-page-hero-content { position: relative; z-index: 1; }
+.menu-page-hero .section-title { color: var(--white); }
+.menu-page-hero .section-label { margin-bottom: 12px; }
+.menu-page-hero-desc {
+  color: rgba(255,255,255,0.55);
+  font-style: italic;
+  font-size: 17px;
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.full-menu-body {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 80px 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+}
+
+.full-menu-col-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--brown);
+  padding-bottom: 14px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid var(--parchment);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.full-menu-col-title .material-symbols-outlined {
+  color: var(--caramel);
+  font-size: 26px;
+  font-weight: 300;
+}
+
+.full-menu-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px dashed rgba(58,32,16,0.12);
+}
+.full-menu-item:last-child { border: none; }
+
+.full-menu-item-img {
+  width: 72px;
+  height: 72px;
+  border-radius: 2px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.full-menu-item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.full-menu-item:hover .full-menu-item-img img { transform: scale(1.08); }
+
+.full-menu-item-info { flex: 1; }
+
+.full-menu-item-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.full-menu-item-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--brown);
+}
+
+.full-menu-item-leader {
+  flex: 1;
+  border-bottom: 2px dotted rgba(58,32,16,0.15);
+  margin-bottom: 3px;
+}
+
+.full-menu-item-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  color: var(--caramel);
+  white-space: nowrap;
+}
+
+.full-menu-item-desc {
+  font-size: 13px;
+  color: var(--steam);
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .full-menu-body {
+    grid-template-columns: 1fr;
+    padding: 48px 20px;
+    gap: 40px;
+  }
+  .menu-page-hero { padding: 72px 20px 48px; }
+}
