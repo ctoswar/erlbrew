@@ -1,62 +1,98 @@
-import "../styles/Footer.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAdmin } from "../context/AdminContext.jsx";
 
-export default function Footer({ setPage }) {
-  const navigate = (id) => {
-    setPage(id);
-    window.scrollTo(0, 0);
+function FooterNewsletter() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus("success");
+      setEmail("");
+      setTimeout(() => setStatus("idle"), 4000);
+    } else {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 3000);
+    }
   };
 
   return (
-    <footer className="footer">
-      <div className="footer-grid">
-        {/* Brand */}
+    <form onSubmit={handleSubmit}>
+      <div className="flex border-b border-white/15 focus-within:border-caramel transition-colors duration-300">
+        <input
+          type="email"
+          placeholder="Email address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className={`bg-transparent border-none outline-none flex-1 text-white/90 text-sm py-3 font-body placeholder:text-white/25 ${
+            status === "error" ? "border-b border-error" : ""
+          }`}
+        />
+        <button
+          type="submit"
+          className="material-symbols-outlined bg-transparent border-none cursor-pointer text-caramel text-xl hover:text-white transition-colors duration-200 active:scale-95"
+        >
+          arrow_forward
+        </button>
+      </div>
+      {status === "success" && (
+        <p className="text-success text-[11px] mt-2 tracking-wide">Welcome to the ritual. Check your inbox!</p>
+      )}
+      {status === "error" && (
+        <p className="text-error text-[11px] mt-2 tracking-wide">Please enter a valid email address.</p>
+      )}
+    </form>
+  );
+}
+
+export default function Footer() {
+  const navigate = useNavigate();
+
+  return (
+    <footer className="bg-ink pt-20 pb-8 px-5 md:px-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
         <div>
-          <div className="footer-brand">Erlbrew Café</div>
-          <p className="footer-tagline">
+          <div className="font-label text-lg text-white tracking-[0.1em] mb-4">Erlbrew Café</div>
+          <p className="text-white/40 text-sm leading-relaxed max-w-[260px]">
             Crafting exceptional coffee experiences for the local community since 2026.
           </p>
         </div>
 
-        {/* Experience */}
         <div>
-          <div className="footer-heading">Experience</div>
-          <ul className="footer-links">
-            <li><button onClick={() => navigate("home")}>Our Story</button></li>
-            <li><button onClick={() => {}}>Sourcing</button></li>
-            <li><button onClick={() => {}}>Brewing Guides</button></li>
-            <li><button onClick={() => navigate("locations")}>Locations</button></li>
+          <div className="font-label text-[10px] tracking-[0.3em] text-caramel uppercase mb-5">Experience</div>
+          <ul className="list-none flex flex-col gap-3">
+            <li><button onClick={() => navigate("/")} className="text-white/45 bg-transparent border-none cursor-pointer font-body text-sm text-left p-0 transition-colors duration-200 hover:text-white">Our Story</button></li>
+            <li><button onClick={() => navigate("/menu")} className="text-white/45 bg-transparent border-none cursor-pointer font-body text-sm text-left p-0 transition-colors duration-200 hover:text-white">Menu</button></li>
+            <li><button onClick={() => navigate("/locations")} className="text-white/45 bg-transparent border-none cursor-pointer font-body text-sm text-left p-0 transition-colors duration-200 hover:text-white">Locations</button></li>
           </ul>
         </div>
 
-        {/* Connect */}
         <div>
-          <div className="footer-heading">Connect</div>
-          <ul className="footer-links">
-            <li><button>Instagram</button></li>
-            <li><button>Newsletter</button></li>
-            <li><button>Wholesale</button></li>
-            <li><button>Careers</button></li>
+          <div className="font-label text-[10px] tracking-[0.3em] text-caramel uppercase mb-5">Connect</div>
+          <ul className="list-none flex flex-col gap-3">
+            <li><button className="text-white/45 bg-transparent border-none cursor-pointer font-body text-sm text-left p-0 transition-colors duration-200 hover:text-white">Instagram</button></li>
+            <li><button className="text-white/45 bg-transparent border-none cursor-pointer font-body text-sm text-left p-0 transition-colors duration-200 hover:text-white">Newsletter</button></li>
+            <li><button className="text-white/45 bg-transparent border-none cursor-pointer font-body text-sm text-left p-0 transition-colors duration-200 hover:text-white">Wholesale</button></li>
+            <li><button className="text-white/45 bg-transparent border-none cursor-pointer font-body text-sm text-left p-0 transition-colors duration-200 hover:text-white">Careers</button></li>
           </ul>
         </div>
 
-        {/* Newsletter */}
         <div>
-          <div className="footer-heading">Newsletter</div>
-          <p style={{ fontSize: 14, color: "rgba(255,255,255,0.4)", lineHeight: 1.7, marginBottom: 16 }}>
+          <div className="font-label text-[10px] tracking-[0.3em] text-caramel uppercase mb-5">Newsletter</div>
+          <p className="text-white/40 text-sm leading-relaxed mb-4">
             Get brewing tips and seasonal updates.
           </p>
-          <div className="footer-newsletter">
-            <input type="email" placeholder="Email address" />
-            <button className="material-symbols-outlined">arrow_forward</button>
-          </div>
+          <FooterNewsletter />
         </div>
       </div>
 
-      <div className="footer-bottom">
-        <span className="footer-copy">© 2026 Erlbrew Café. All rights reserved.</span>
-        <div className="footer-legal">
-          <button>Privacy Policy</button>
-          <button>Terms of Service</button>
+      <div className="border-t border-white/7 pt-7 flex justify-between items-center flex-wrap gap-3">
+        <span className="text-white/25 text-xs">© 2026 Erlbrew Café. All rights reserved.</span>
+        <div className="flex gap-6">
+          <button className="text-white/25 bg-transparent border-none cursor-pointer font-body text-xs transition-colors duration-200 hover:text-white/60">Privacy Policy</button>
+          <button className="text-white/25 bg-transparent border-none cursor-pointer font-body text-xs transition-colors duration-200 hover:text-white/60">Terms of Service</button>
         </div>
       </div>
     </footer>

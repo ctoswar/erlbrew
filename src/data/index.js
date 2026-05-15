@@ -6,6 +6,7 @@ export const MENU_DATA = {
       desc: "Single-origin dark chocolate, espresso, steamed oat milk, topped with house-smoked Maldon sea salt.",
       img: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=500&q=80",
       tag: "Signature",
+      badges: ["V", "GF"],
     },
     {
       name: "Velvet Matcha Latte",
@@ -13,6 +14,7 @@ export const MENU_DATA = {
       desc: "Ceremonial grade Uji matcha whisked with Madagascar vanilla bean and creamy macadamia milk.",
       img: "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?w=500&q=80",
       tag: "Signature",
+      badges: ["V", "GF"],
     },
     {
       name: "Honey Lavender Cortado",
@@ -20,6 +22,7 @@ export const MENU_DATA = {
       desc: "Local wildflower honey, dried culinary lavender, and a double shot of our house 'Heritage' roast.",
       img: "https://images.unsplash.com/photo-1497636577773-f1231844b336?w=500&q=80",
       tag: "Signature",
+      badges: ["GF"],
     },
     {
       name: "Cold Brew Reserve",
@@ -27,6 +30,7 @@ export const MENU_DATA = {
       desc: "24-hour slow steeped concentrate. Served over a single clear ice sphere.",
       img: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&q=80",
       tag: "Hand-poured",
+      badges: ["V", "GF"],
     },
   ],
   espresso: [
@@ -36,6 +40,7 @@ export const MENU_DATA = {
       desc: "Double shot pulled over filtered hot water.",
       img: "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=500&q=80",
       tag: "Classic",
+      badges: ["V", "GF"],
     },
     {
       name: "Flat White",
@@ -43,6 +48,7 @@ export const MENU_DATA = {
       desc: "Thin layer of velvet microfoam over espresso.",
       img: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=500&q=80",
       tag: "Classic",
+      badges: ["GF"],
     },
     {
       name: "Cappuccino",
@@ -50,6 +56,7 @@ export const MENU_DATA = {
       desc: "Equal parts espresso, milk, and foam.",
       img: "https://images.unsplash.com/photo-1534778101976-62847782c213?w=500&q=80",
       tag: "Classic",
+      badges: ["GF"],
     },
     {
       name: "Macchiato",
@@ -57,6 +64,7 @@ export const MENU_DATA = {
       desc: "Espresso 'marked' with a dollop of foam.",
       img: "https://images.unsplash.com/photo-1485808191679-5f86510bd9d4?w=500&q=80",
       tag: "Classic",
+      badges: ["V", "GF"],
     },
   ],
   pastries: [
@@ -66,6 +74,7 @@ export const MENU_DATA = {
       desc: "Double baked with rum-infused frangipane and toasted almond slivers.",
       img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=500&q=80",
       tag: "Pastry",
+      badges: ["V"],
     },
     {
       name: "Dark Chocolate Muffin",
@@ -73,6 +82,7 @@ export const MENU_DATA = {
       desc: "70% cocoa batter with a soft molten center and Tanzanian dark chocolate chunks.",
       img: "https://images.unsplash.com/photo-1607958996333-41aef7caefaa?w=500&q=80",
       tag: "Pastry",
+      badges: ["V"],
     },
     {
       name: "Cinnamon Swirl",
@@ -80,6 +90,7 @@ export const MENU_DATA = {
       desc: "Brioche dough layered with Korintje cinnamon and a bourbon vanilla glaze.",
       img: "https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=500&q=80",
       tag: "Pastry",
+      badges: ["V"],
     },
     {
       name: "V60 Single Origin",
@@ -87,6 +98,7 @@ export const MENU_DATA = {
       desc: "Rotational light roasts. Ask your barista about today's micro-lots from Ethiopia or Colombia.",
       img: "https://images.unsplash.com/photo-1495774856032-8b90bbb32b32?w=500&q=80",
       tag: "Hand-poured",
+      badges: ["V", "GF"],
     },
   ],
 };
@@ -97,12 +109,14 @@ export const HAND_POURED = [
     price: "$6.50+",
     desc: "Rotational light roasts. Ask your barista about today's micro-lots from Ethiopia or Colombia.",
     img: "https://images.unsplash.com/photo-1495774856032-8b90bbb32b32?w=500&q=80",
+    badges: ["V", "GF"],
   },
   {
     name: "Cold Brew Reserve",
     price: "$5.75",
     desc: "24-hour slow steeped concentrate. Served over a single clear ice sphere.",
     img: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500&q=80",
+    badges: ["V", "GF"],
   },
 ];
 
@@ -167,3 +181,25 @@ export const FEATURES = [
     body: "We rotate our offerings with the seasons, celebrating new harvests and experimental roasts throughout the year.",
   },
 ];
+
+export const BADGE_LABELS = {
+  V: "Vegan",
+  GF: "Gluten-Free",
+  Vg: "Vegetarian",
+  SP: "Spicy",
+};
+
+export const MENU_CATEGORIES = [
+  { key: "brews", label: "Signature Brews", icon: "auto_awesome" },
+  { key: "espresso", label: "Espresso Classics", icon: "coffee_maker" },
+  { key: "pastries", label: "Artisanal Pastries", icon: "bakery_dining" },
+];
+
+export const SEASONAL = {
+  title: "Winter Spiced Bourbon Latte",
+  price: "$7.50",
+  desc: "House-infused bourbon syrup, star anise, orange zest, and our 'Heritage' espresso. A cup for the cold months.",
+  badge: "Seasonal Special",
+  image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&q=60",
+  endsAt: null, // null = use auto-calculated equinox; ISO string = specific date
+};
