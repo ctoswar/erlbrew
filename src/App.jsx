@@ -20,6 +20,30 @@ export default function App() {
   const [transitionKey, setTransitionKey] = useState(0);
   const isAdmin = location.pathname.startsWith("/admin");
 
+  // Dark mode class sync (toggle from localStorage or system preference)
+  useEffect(() => {
+    const stored = localStorage.getItem("erlbrew-theme");
+    if (stored === "dark") {
+      document.documentElement.classList.add("dark");
+    } else if (stored === "light") {
+      document.documentElement.classList.remove("dark");
+    } else {
+      // Default: follow system
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.classList.add("dark");
+      }
+    }
+
+    const mql = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleChange = (e) => {
+      if (!localStorage.getItem("erlbrew-theme")) {
+        document.documentElement.classList.toggle("dark", e.matches);
+      }
+    };
+    mql.addEventListener("change", handleChange);
+    return () => mql.removeEventListener("change", handleChange);
+  }, []);
+
   useEffect(() => {
     setTransitionKey((k) => k + 1);
     window.scrollTo(0, 0);
@@ -31,7 +55,7 @@ export default function App() {
         {!isAdmin && <Cursor />}
         {!isAdmin && <Navbar />}
 
-        <main key={transitionKey} style={{ animation: "page-slide-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards" }}>
+        <main key={transitionKey} className={`opacity-0 ${!isAdmin ? "pb-16 md:pb-0" : ""}`} style={{ animation: "page-slide-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards" }}>
           <Routes>
             <Route path="/"         element={<HomePage />} />
             <Route path="/menu"     element={<MenuPage />} />
